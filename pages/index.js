@@ -122,38 +122,48 @@ export default function Home() {
     <>
       <div className="mx-auto max-w-5xl mt-5 mb-5 p-2">
       <Head>
-          {/* SEO Meta Tags */}
-          <title>AI Youtube HashTag Generator</title>
-          <meta name="description" content="Boost your YouTube video visibility with our YouTube HashTag Generator. Quickly generate relevant and popular tags to enhance your video's SEO, reach a wider audience, and increase engagement. Try it now and watch your video views soar!" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <meta name="robots" content="index, follow" />
+  {/* SEO Meta Tags */}
+  <title>AI YouTube Hashtag Generator</title>
+  <meta 
+    name="description" 
+    content="Enhance your YouTube video performance with the AI YouTube Hashtag Generator. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
 
-          {/* Canonical URL */}
-          <link rel="canonical" href="https://tag-generator-psi.vercel.app/" />
+  {/* Canonical URL */}
+  <link rel="canonical" href="https://youtube-hashtag-generator-w6pt.vercel.app/" />
 
-          {/* Open Graph Meta Tags */}
-          <meta property="og:type" content="website" />
-          <meta property="og:url"  content="https://tag-generator-psi.vercel.app/"/>
-          <meta property="og:title" content="AI Youtube HashTag Generator" />
-          <meta property="og:description" content="Boost your YouTube video visibility with our YouTube HashTag Generator. Quickly generate relevant and popular tags to enhance your video's SEO, reach a wider audience, and increase engagement. Try it now and watch your video views soar!"/>
-          <meta property="og:image" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />
-          <meta property="og:image:secure_url" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />
-          <meta property="og:site_name" content="Ytubetools" />
-          <meta property="og:locale" content="en_US" />
+  {/* Open Graph Meta Tags */}
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://youtube-hashtag-generator-w6pt.vercel.app/" />
+  <meta property="og:title" content="AI YouTube Hashtag Generator" />
+  <meta 
+    property="og:description" 
+    content="Enhance your YouTube video performance with the AI YouTube Hashtag Generator. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
+  />
+  <meta property="og:image" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />
+  <meta property="og:image:secure_url" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />
+  <meta property="og:site_name" content="Ytubetools" />
+  <meta property="og:locale" content="en_US" />
 
-          {/* Twitter Meta Tags */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:domain" content="https://tag-generator-psi.vercel.app/" />
-          <meta property="twitter:url" content="https://tag-generator-psi.vercel.app/"/>
-          <meta name="twitter:title" content="AI Youtube HashTag Generator" />
-          <meta name="twitter:description" content="Boost your YouTube video visibility with our YouTube HashTag Generator. Quickly generate relevant and popular tags to enhance your video's SEO, reach a wider audience, and increase engagement. Try it now and watch your video views soar!"/>
-          <meta name="twitter:image" content="" />
-          <meta name="twitter:site" content="@ytubetools" />
-          <meta name="twitter:image:alt" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />          
-        </Head>
+  {/* Twitter Meta Tags */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:domain" content="youtube-hashtag-generator-w6pt.vercel.app" />
+  <meta property="twitter:url" content="https://youtube-hashtag-generator-w6pt.vercel.app/" />
+  <meta name="twitter:title" content="AI YouTube Hashtag Generator" />
+  <meta 
+    name="twitter:description" 
+    content="Enhance your YouTube video performance with the AI YouTube Hashtag Generator. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
+  />
+  <meta name="twitter:image" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />
+  <meta name="twitter:site" content="@ytubetools" />
+  <meta 
+    name="twitter:image:alt" 
+    content="A preview of AI YouTube Hashtag Generator with a clean and simple design for optimizing your YouTube video hashtags." 
+  />
+</Head>
+
         <h2 className="font-extrabold text-[18px] leading-[22px] tracking-[0.4em] uppercase text-center text-[#9597ff] relative z-20 bg-clip-text">
           AI YOUTUBE VIDEO HashTag TOOL
         </h2>
