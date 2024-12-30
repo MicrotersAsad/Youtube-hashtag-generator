@@ -8,40 +8,38 @@ export default function Home() {
 
   const handleUrlSubmit = (e) => {
     e.preventDefault();
-    setIframeUrl(url);
+    setIframeUrl(url); // সরাসরি URL ব্যবহার না করে Proxy API ব্যবহার করুন
   };
 
-  // ফর্ম হাইলাইট এবং সিলেক্ট করার ফাংশন
   const handleIframeLoad = (e) => {
-    const iframeDocument = e.target.contentWindow.document;
+    try {
+      const iframeDocument = e.target.contentWindow.document;
+      const forms = iframeDocument.querySelectorAll('form');
 
-    // সব ফর্ম খুঁজে বের করা
-    const forms = iframeDocument.querySelectorAll('form');
+      if (forms.length === 0) {
+        alert('No forms found on the loaded page.');
+        return;
+      }
 
-    // প্রতিটি ফর্মে হাইলাইট এবং ক্লিক ইভেন্ট লিসেনার যোগ করা
-    forms.forEach((form, index) => {
-      form.style.border = '2px solid red'; // হাইলাইট করার জন্য লাল বর্ডার
-      form.style.cursor = 'pointer'; // ফর্মে ক্লিক করার জন্য পয়েন্টার কার্সর যোগ করা
+      forms.forEach((form, index) => {
+        form.style.border = '2px solid red';
+        form.style.cursor = 'pointer';
 
-      // ফর্মে ক্লিক ইভেন্ট লিসেনার
-      form.addEventListener('click', (event) => {
-        event.preventDefault(); // ডিফল্ট সাবমিট বন্ধ করা
-
-        // আগে সিলেক্ট করা ফর্মের বর্ডার সরিয়ে ফেলা
-        forms.forEach(f => f.style.border = '2px solid red');
-
-        // সিলেক্ট করা ফর্ম হাইলাইট করা
-        form.style.border = '3px solid green';
-
-        // সিলেক্টর তৈরি করা
-        const selector = `form:nth-of-type(${index + 1})`;
-        setSelectedForm(selector);
-        alert(`Form selected: ${selector}`);
+        form.addEventListener('click', (event) => {
+          event.preventDefault();
+          forms.forEach((f) => (f.style.border = '2px solid red'));
+          form.style.border = '3px solid green';
+          const selector = `form:nth-of-type(${index + 1})`;
+          setSelectedForm(selector);
+          alert(`Form selected: ${selector}`);
+        });
       });
-    });
+    } catch (error) {
+      console.error('Error accessing iframe content:', error);
+      alert('Could not access iframe content. This might be due to cross-origin restrictions.');
+    }
   };
 
-  // স্ক্রিপ্ট জেনারেট করার ফাংশন
   const generateScript = async () => {
     if (!selectedForm) {
       alert('Please select a form first!');
@@ -75,9 +73,9 @@ export default function Home() {
         <div>
           <h2>Select a form to monitor:</h2>
           <iframe
-            src={iframeUrl}
+            src={iframeUrl} // সরাসরি URL না দিয়ে Proxy API ব্যবহার করুন
             style={{ width: '100%', height: '500px', border: '1px solid black' }}
-            onLoad={handleIframeLoad} // Iframe লোড হলে ফর্ম সিলেক্টের জন্য ফাংশন কল
+            onLoad={handleIframeLoad}
           />
           {selectedForm && <p>Selected Form: {selectedForm}</p>}
           <button onClick={generateScript}>Generate Script</button>
