@@ -4,11 +4,10 @@ export default function Home() {
   const [url, setUrl] = useState('');
   const [iframeUrl, setIframeUrl] = useState('');
   const [selectedForm, setSelectedForm] = useState(null);
-  const [scriptTag, setScriptTag] = useState('');
 
   const handleUrlSubmit = (e) => {
     e.preventDefault();
-    setIframeUrl(url); // সরাসরি URL ব্যবহার না করে Proxy API ব্যবহার করুন
+    setIframeUrl(url);
   };
 
   const handleIframeLoad = (e) => {
@@ -40,22 +39,6 @@ export default function Home() {
     }
   };
 
-  const generateScript = async () => {
-    if (!selectedForm) {
-      alert('Please select a form first!');
-      return;
-    }
-
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ formSelector: selectedForm, userId: 'user123' }),
-    });
-
-    const data = await response.json();
-    setScriptTag(data.script);
-  };
-
   return (
     <div>
       <h1>Form Monitoring System</h1>
@@ -70,23 +53,11 @@ export default function Home() {
       </form>
 
       {iframeUrl && (
-        <div>
-          <h2>Select a form to monitor:</h2>
-          <iframe
-            src={iframeUrl} // সরাসরি URL না দিয়ে Proxy API ব্যবহার করুন
-            style={{ width: '100%', height: '500px', border: '1px solid black' }}
-            onLoad={handleIframeLoad}
-          />
-          {selectedForm && <p>Selected Form: {selectedForm}</p>}
-          <button onClick={generateScript}>Generate Script</button>
-        </div>
-      )}
-
-      {scriptTag && (
-        <div>
-          <h3>Embed this script in your website:</h3>
-          <textarea value={scriptTag} readOnly style={{ width: '100%', height: '150px' }} />
-        </div>
+        <iframe
+          src={`/api/proxy?url=${encodeURIComponent(iframeUrl)}`}
+          style={{ width: '100%', height: '500px', border: '1px solid black' }}
+          onLoad={handleIframeLoad}
+        />
       )}
     </div>
   );
