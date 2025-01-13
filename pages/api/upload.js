@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, GetObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3'; // Ensure DeleteObjectCommand is imported
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { Upload } from '@aws-sdk/lib-storage';
 import ytdl from '@distube/ytdl-core';
@@ -15,56 +15,86 @@ const s3 = new S3Client({
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { url } = req.body;
+    const { url, quality } = req.body;
 
     if (!ytdl.validateURL(url)) {
       return res.status(400).json({ error: 'Invalid YouTube URL' });
     }
 
     try {
-      // Get video information
       const videoInfo = await ytdl.getInfo(url);
       const videoTitle = videoInfo.videoDetails.title.replace(/[^a-zA-Z0-9]/g, '_');
       const fileName = `${videoTitle}-${uuidv4()}.mp4`;
 
-      // Create a readable stream for the video
+      const formats = videoInfo.formats;
+
+      // Try to find the requested format
+      let selectedFormat = formats.find((format) => format.qualityLabel === quality);
+
+      if (!selectedFormat) {
+        // If the requested quality is not available, fall back to the highest available quality
+        console.log(`Requested quality (${quality}) not available. Falling back to highest video.`);
+        selectedFormat = formats.find((format) =>
+          ['1080p', '720p', '480p', '360p'].includes(format.qualityLabel)
+        );
+        
+        if (!selectedFormat) {
+          throw new Error('No suitable video format found.');
+        }
+
+        console.log(`Falling back to: ${selectedFormat.qualityLabel}`);
+      }
+
+      // Create a video stream with the selected format
       const videoStream = ytdl(url, {
-        quality: 'highestvideo',
-        filter: 'audioandvideo',
+        quality: selectedFormat.itag, // Use the 'itag' corresponding to the selected format
+        filter: 'audioandvideo', // Make sure to download both audio and video
       });
 
-      // Use the Upload helper for streaming upload
       const upload = new Upload({
         client: s3,
         params: {
           Bucket: process.env.AWS_S3_BUCKET_NAME,
           Key: fileName,
           Body: videoStream,
-          ContentType: 'video/mp4', // Set the content type for video files
-          ContentDisposition: `attachment; filename="${fileName}"`, // Force file download
+          ContentType: 'video/mp4',
+          ContentDisposition: `attachment; filename="${fileName}"`,
         },
       });
 
-      // Monitor upload progress
       upload.on('httpUploadProgress', (progress) => {
         console.log('Upload progress:', progress);
       });
 
-      // Perform the upload
+      // Perform the upload to S3
       await upload.done();
 
-      // Generate a pre-signed URL for downloading the video
+      // Generate a pre-signed URL for the uploaded video
       const signedUrl = await getSignedUrl(
         s3,
         new GetObjectCommand({
           Bucket: process.env.AWS_S3_BUCKET_NAME,
           Key: fileName,
-          ResponseContentDisposition: `attachment; filename="${fileName}"`, // Ensure forced download
-          ResponseContentType: 'video/mp4', // Set response content type explicitly
+          ResponseContentDisposition: `attachment; filename="${fileName}"`, // Forced download
+          ResponseContentType: 'video/mp4', // Set response content type to video/mp4
         }),
         { expiresIn: 600 } // URL valid for 10 minutes
       );
 
+      // Set up the 6 minute timer for deleting the video from S3
+      setTimeout(async () => {
+        try {
+          await s3.send(new DeleteObjectCommand({
+            Bucket: process.env.AWS_S3_BUCKET_NAME,
+            Key: fileName,
+          }));
+          console.log(`File ${fileName} deleted from S3 after 6 minutes.`);
+        } catch (err) {
+          console.error('Error deleting video from S3:', err);
+        }
+      }, 180000); // 3 minutes = 180000 milliseconds
+
+      // Send the pre-signed URL to the frontend
       res.status(200).json({ downloadUrl: signedUrl });
     } catch (err) {
       console.error('Error uploading to S3:', err);
