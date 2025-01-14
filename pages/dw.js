@@ -21,7 +21,7 @@ const App = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://185.126.181.19:5000/api/getFormats", { url });
+      const response = await axios.post("https://ytd.mhnazmul.com/api/getFormats", { url });
       setFormats(response.data.formats);
     } catch (err) {
       setError("Error fetching video formats.");
@@ -41,7 +41,7 @@ const App = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://185.126.181.19:5000/api/upload", { url, quality: selectedQuality });
+      const response = await axios.post("https://ytd.mhnazmul.com/api/upload", { url, quality: selectedQuality });
       setDownloadUrl(response.data.downloadUrl);
     } catch (err) {
       setError("Error downloading video.");
