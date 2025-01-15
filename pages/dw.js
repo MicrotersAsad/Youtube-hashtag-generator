@@ -20,7 +20,7 @@ const App = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:5000/getFormats", { url });
+      const response = await axios.post("https://ytd.mhnazmul.com/getFormats", { url });
       setFormats(response.data.formats);
     } catch (err) {
       setError("Error fetching video formats.");
@@ -39,7 +39,7 @@ const App = () => {
       return;
     }
 
-    const downloadLink = `http://localhost:5000/download?url=${encodeURIComponent(
+    const downloadLink = `https://ytd.mhnazmul.com/download?url=${encodeURIComponent(
       url
     )}&itag=${selectedQuality}`;
 
