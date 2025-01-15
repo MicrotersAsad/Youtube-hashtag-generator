@@ -5,7 +5,6 @@ const App = () => {
   const [url, setUrl] = useState("");
   const [formats, setFormats] = useState([]);
   const [selectedQuality, setSelectedQuality] = useState("");
-  const [downloadUrl, setDownloadUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -13,7 +12,6 @@ const App = () => {
   const fetchFormats = async () => {
     setError("");
     setFormats([]);
-    setDownloadUrl("");
 
     if (!url) {
       setError("Please enter a valid YouTube URL.");
@@ -22,7 +20,7 @@ const App = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("https://ytd.mhnazmul.com/getFormats", { url });
+      const response = await axios.post("http://localhost:5000/getFormats", { url });
       setFormats(response.data.formats);
     } catch (err) {
       setError("Error fetching video formats.");
@@ -33,31 +31,25 @@ const App = () => {
   };
 
   // Download video
-  const downloadVideo = async () => {
+  const downloadVideo = () => {
     setError("");
-    setDownloadUrl("");
 
     if (!url || !selectedQuality) {
       setError("Please select a video quality.");
       return;
     }
 
-    try {
-      setLoading(true);
-      const response = await axios.post("https://ytd.mhnazmul.com/upload", { url, itag: selectedQuality });
-      setDownloadUrl(response.data.downloadUrl);
+    const downloadLink = `http://localhost:5000/download?url=${encodeURIComponent(
+      url
+    )}&itag=${selectedQuality}`;
 
-      // Automatically trigger download when the download URL is ready
-      const link = document.createElement('a');
-      link.href = response.data.downloadUrl; // URL returned by the backend
-      link.download = '';  // This will trigger the file to download
-      link.click();  // Simulate clicking the link to trigger download
-    } catch (err) {
-      setError("Error downloading video.");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    // Trigger download
+    const link = document.createElement("a");
+    link.href = downloadLink;
+    link.setAttribute("download", ""); // Optional: specify file name
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   };
 
   return (
@@ -97,7 +89,9 @@ const App = () => {
               {formats.map((format, index) => (
                 <button
                   key={index}
-                  className="bg-green-100 text-green-600 p-2 rounded-md text-sm font-medium hover:bg-green-200"
+                  className={`bg-green-100 text-green-600 p-2 rounded-md text-sm font-medium hover:bg-green-200 ${
+                    selectedQuality === format.itag ? "bg-green-300" : ""
+                  }`}
                   onClick={() => setSelectedQuality(format.itag)}
                 >
                   {format.qualityLabel}
@@ -107,14 +101,12 @@ const App = () => {
 
             <button
               className={`w-full mt-4 py-2 text-white rounded-md ${
-                loading || !selectedQuality
-                  ? "bg-green-400"
-                  : "bg-green-600 hover:bg-green-700"
+                !selectedQuality ? "bg-green-400" : "bg-green-600 hover:bg-green-700"
               }`}
               onClick={downloadVideo}
-              disabled={loading || !selectedQuality}
+              disabled={!selectedQuality}
             >
-              {loading ? "Downloading..." : "Download Video"}
+              Download Video
             </button>
           </div>
         )}
