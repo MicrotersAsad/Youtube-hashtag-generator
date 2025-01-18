@@ -168,11 +168,11 @@ export default function Home() {
         <h2 className="font-extrabold text-[18px] leading-[22px] tracking-[0.4em] uppercase text-center text-[#9597ff] relative z-20 bg-clip-text">
           AI YOUTUBE VIDEO HashTag TOOL
         </h2>
-        <h1 className="text-white text-[36px] leading-[43px] md:text-[56px] md:leading-[60px] text-center mt-8 relative z-20">
-          Save Time Generating YouTube Tags with our Video HashTag Generator
-        </h1>
+        <h1 className="text-white text-[36px] leading-[50px] md:text-[76px] md:leading-[80px] text-center mt-8 relative z-20">
+    YouTube Hashtag Generator Free Tool
+</h1>
         <p className="mt-8 text-[#C7CBD5] text-center text-[18px] leading-[22px] md:text-[22px] md:leading-[28px] font-normal lg:max-w-[1000px] relative z-20">
-          Effortlessly generate HashTags for your videos using our YouTube Hashtag generator, built to help you find the most relevant tags in seconds.
+        Enhance your YouTube video performance with the YouTube Hashtag Generator Free Tool - No Signup Required, No Card. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!
         </p>
 
         <div className="flex flex-col bg-[#171C29] px-4 py-6 md:p-6 md:pb-[34px] border-[2px] border-[rgba(161,174,210,0.24)] rounded-[16px] mt-10 w-full lg:min-w-[860px] relative z-20 shadow-[8px_32px_32px_-8px_rgba(0,0,0,0.5)]">
