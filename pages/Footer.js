@@ -13,15 +13,16 @@ const Footer = () => {
                     <Link className="text-white text-3xl font-bold" href="/">
         <Image src={logo} width={200} height={128}/>
         </Link>
-                        <p className="mt-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos exercitationem ratione voluptatibus possimus culpa illo quia alias inventore, animi mollitia, repellat beatae modi facere accusantium!</p>
+                        <p className="mt-2">Generate YouTube hashtags effortlessly with our free tool. No signup, no credit card required—just quick and effective hashtag suggestions for your videos!</p>
                     </div>
                     <div className="p-5">
                         <h4 className="text-xl font-bold">Menu</h4>
                         <ul className="mt-2 space-y-2">
-                            <li><Link href="#about" className="text-white hover:text-gray-400">About Us</Link></li>
-                            <li><Link href="#service" className="text-white hover:text-gray-400">Services</Link></li>
-                            <li><Link href="#gallery" className="text-white hover:text-gray-400">Portfolio</Link></li>
-                            <li><Link href="#contact" className="text-white hover:text-gray-400">Contact</Link></li>
+                            <li><Link href="/terms" className="text-white hover:text-gray-400">Terms and Condition
+                            </Link></li>
+                            <li><Link href="/privacy" className="text-white hover:text-gray-400">Privacy Policy</Link></li>
+                            <li><Link href="/refund" className="text-white hover:text-gray-400">Refund Policy</Link></li>
+                            <li><Link href="/contact" className="text-white hover:text-gray-400">Contact</Link></li>
                         </ul>
                     </div>
                     <div className="p-5">
@@ -29,15 +30,15 @@ const Footer = () => {
                         <div className="mt-2 space-y-2">
                             <div className="flex items-center">
                                 <i className="bi bi-telephone"></i>
-                                <p className="pl-3">(111) 222 3562</p>
+                                <p className="pl-3">+05 773 325 777</p>
                             </div>
                             <div className="flex items-center">
                                 <i className="bi bi-envelope"></i>
-                                <p className="pl-3">Yourmail@gmail.com</p>
+                                <p className="pl-3">support@aihashtaggen.com</p>
                             </div>
                             <div className="flex items-center">
                                 <i className="bi bi-geo-alt"></i>
-                                <p className="pl-3">3225 N Harbar</p>
+                                <p className="pl-3">123 Innovation Way, Tech City, CA 94043</p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +52,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <h6 className="text-center text-primary font-bold mt-8">© 2023 ytubetools.com</h6>
+                <h6 className="text-center text-primary font-bold mt-8">© 2025 ytubehashtag.com</h6>
             </div>
            
         </footer>

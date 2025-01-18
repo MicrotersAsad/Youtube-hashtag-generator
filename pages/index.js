@@ -5,6 +5,7 @@ import { FaCopy, FaDownload } from "react-icons/fa";
 import HowTouse from "../public/how to use.png"
 import Image from "next/image";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
   const [generatedTags, setGeneratedTags] = useState([]);
@@ -123,10 +124,10 @@ export default function Home() {
       <div className="mx-auto max-w-5xl mt-5 mb-5 p-2">
       <Head>
   {/* SEO Meta Tags */}
-  <title>AI YouTube Hashtag Generator</title>
+  <title>YouTube Hashtag Generator Free Tool - No Signup Required, No Card</title>
   <meta 
     name="description" 
-    content="Enhance your YouTube video performance with the AI YouTube Hashtag Generator. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
+    content="Enhance your YouTube video performance with the YouTube Hashtag Generator Free Tool - No Signup Required, No Card. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
   />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
@@ -137,10 +138,10 @@ export default function Home() {
   {/* Open Graph Meta Tags */}
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://youtube-hashtag-generator-w6pt.vercel.app/" />
-  <meta property="og:title" content="AI YouTube Hashtag Generator" />
+  <meta property="og:title" content="YouTube Hashtag Generator Free Tool - No Signup Required, No Card" />
   <meta 
     property="og:description" 
-    content="Enhance your YouTube video performance with the AI YouTube Hashtag Generator. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
+    content="Enhance your YouTube video performance with the YouTube Hashtag Generator Free Tool - No Signup Required, No Card. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
   />
   <meta property="og:image" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />
   <meta property="og:image:secure_url" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />
@@ -151,16 +152,16 @@ export default function Home() {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:domain" content="youtube-hashtag-generator-w6pt.vercel.app" />
   <meta property="twitter:url" content="https://youtube-hashtag-generator-w6pt.vercel.app/" />
-  <meta name="twitter:title" content="AI YouTube Hashtag Generator" />
+  <meta name="twitter:title" content="YouTube Hashtag Generator Free Tool - No Signup Required, No Card" />
   <meta 
     name="twitter:description" 
-    content="Enhance your YouTube video performance with the AI YouTube Hashtag Generator. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
+    content="Enhance your YouTube video performance with the YouTube Hashtag Generator Free Tool - No Signup Required, No Card. Create trending, optimized hashtags to boost SEO, reach your target audience, and maximize engagement. Start generating tags today to see your video views grow!" 
   />
   <meta name="twitter:image" content="https://ytubetools.s3.eu-north-1.amazonaws.com/uploads/1734954706609-tag-generator.png" />
   <meta name="twitter:site" content="@ytubetools" />
   <meta 
     name="twitter:image:alt" 
-    content="A preview of AI YouTube Hashtag Generator with a clean and simple design for optimizing your YouTube video hashtags." 
+    content="A preview of YouTube Hashtag Generator Free Tool - No Signup Required, No Card with a clean and simple design for optimizing your YouTube video hashtags." 
   />
 </Head>
 
@@ -388,7 +389,7 @@ export default function Home() {
       <li className="mb-2">✔️ AI-Powered Optimization</li>
     </ul>
     <button className="w-full bg-[#38b5fe] text-[#0D111B] py-3 rounded-lg font-bold hover:bg-[#139dff] transition duration-300 hover:scale-105">
-      Get Started
+     <Link href="/contact" className="text-decoration-none">Get Started</Link>
     </button>
   </div>
 </div>
