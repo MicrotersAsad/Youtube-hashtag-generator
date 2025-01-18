@@ -121,7 +121,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="mx-auto max-w-5xl mt-5 mb-5 p-2">
+      <div className="mx-auto max-w-5xl mt-44 mb-5 p-2">
       <Head>
   {/* SEO Meta Tags */}
   <title>YouTube Hashtag Generator Free Tool - No Signup Required, No Card</title>

@@ -11,7 +11,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="p-4 bg-black text-white shadow-lg fixed top-0 left-0 w-full z-50">
+    <nav className="p-4 bg-black text-white shadow-lg fixed top-0 left-0 w-full z-50 mb-5">
       <div className="container mx-auto max-w-7xl flex items-center justify-between">
         {/* Logo */}
         <Link href="/" passHref>
@@ -87,7 +87,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        <div className="flex flex-col items-center justify-center space-y-6 h-full">
+        <div className="flex flex-col items-center justify-center space-y-6 h-full mb-5">
           <Link href="/" className="text-2xl hover:text-gray-300" onClick={() => setIsOpen(false)}>
             Home
           </Link>
