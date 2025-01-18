@@ -52,7 +52,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <h6 className="text-center text-primary font-bold mt-8">© 2025 ytubehashtag.com</h6>
+                <h6 className="text-center text-primary font-bold mt-8">© 2025 videohastaggenerator.com</h6>
             </div>
            
         </footer>
